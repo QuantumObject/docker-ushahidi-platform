@@ -13,6 +13,7 @@
  mkdir /var/www/ushahidi
  cd /var/www/ushahidi/
  git clone https://github.com/ushahidi/platform.git
+ #git submodule update --init --recursive
  chmod 770 application/config/config.php
  chmod 770 application/config
  chmod 770 application/cache

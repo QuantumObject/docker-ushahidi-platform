@@ -14,6 +14,7 @@
  cd /var/www/ushahidi/
  git clone https://github.com/ushahidi/platform.git
  #git submodule update --init --recursive
+ chown -R www-data:www-data /var/www/ushahidi
  chmod 770 application/config/config.php
  chmod 770 application/config
  chmod 770 application/cache

@@ -10,8 +10,7 @@
  echo "GRANT ALL ON ushahidi.* TO ushahidiuser@localhost IDENTIFIED BY 'ushahidipasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
 
  #need to be fix for container enviroment including running database while it is modified it 
- mkdir /var/www/ushahidi
- cd /var/www/ushahidi/
+ cd /var/www/
  git clone https://github.com/ushahidi/platform.git
  #git submodule update --init --recursive
  chown -R www-data:www-data /var/www/ushahidi

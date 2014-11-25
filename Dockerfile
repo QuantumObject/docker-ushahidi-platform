@@ -10,6 +10,13 @@ ENV HOME /root
 #Installation of nesesary package/software for this containers...
 RUN apt-get update && apt-get install -y -q apache2 \
                                             mysql-server \
+                                            xclip \
+                                            git-core \
+                                            libapache2-mod-auth-mysql \
+                                            php5 \
+                                            php5-mcrypt \
+                                            php5-curl \
+                                            
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*

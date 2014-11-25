@@ -18,7 +18,7 @@
  chmod 770 platform/application/config
  chmod 770 platform/application/cache
  chmod 770 platform/application/logs
- chmod 770 platform/media/uploads
+ chmod 770 platform/application/media/uploads
  chmod 770 platform/.htaccess
  rm -R /var/www/html
  a2enmod rewrite

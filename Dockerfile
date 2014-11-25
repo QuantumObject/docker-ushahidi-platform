@@ -63,5 +63,8 @@ RUN  a2dissite default && a2ensite ushahidi
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 80
 
+#creatian of volume 
+VOLUME /var/www/
+
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]

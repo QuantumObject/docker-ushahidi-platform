@@ -3,7 +3,7 @@
  
   DocumentRoot /var/www/ushahidi/platform/httpdocs/
  
-  <Directory /var/www/ushahidi>
+  <Directory /var/www/ushahidi/platform/httpdocs>
     Options FollowSymLinks MultiViews
     AllowOverride All
     Order allow,deny

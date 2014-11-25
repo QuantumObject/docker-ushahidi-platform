@@ -1,7 +1,7 @@
 <VirtualHost \*:80>
   ServerAdmin webmaster@localhost
  
-  DocumentRoot /var/www/ushahidi
+  DocumentRoot /var/www/ushahidi/platform/httpdocs/
  
   <Directory /var/www/ushahidi>
     Options FollowSymLinks MultiViews

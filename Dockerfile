@@ -61,7 +61,9 @@ VOLUME /var/backups
 
 #add files and script that need to be use for this container
 #include conf file relate to service/daemon 
-#additionsl tools to be use internally 
+#additionsl tools to be use internally
+COPY ushahidi-dev /etc/apache2/sites-available/ushahidi-dev
+RUN  a2dissite default && a2ensite ushahidi-dev
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 

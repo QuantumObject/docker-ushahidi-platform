@@ -11,7 +11,6 @@ ENV HOME /root
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q php5-mysql \
                                             php-apc \
-                                            pwgen \
                                             python-setuptools \
                                             curl \
                                             apache2 \
@@ -27,7 +26,7 @@ RUN apt-get update && apt-get install -y -q php5-mysql \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
                     
-#need to add maybe to install memcached \  php5-fpm \ mysql-client
+#need to add maybe to install memcached \  php5-fpm \ mysql-client pwgen \
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 

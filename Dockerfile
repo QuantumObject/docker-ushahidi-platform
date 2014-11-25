@@ -66,7 +66,7 @@ VOLUME /var/backups
 #include conf file relate to service/daemon 
 #additionsl tools to be use internally
 COPY ushahidi /etc/apache2/sites-available/ushahidi
-RUN a2ensite ushahidi
+#RUN a2ensite ushahidi
 # php-fpm config
 #RUN sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" /etc/php5/fpm/php.ini
 #RUN sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" /etc/php5/fpm/php.ini

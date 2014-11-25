@@ -1,18 +1,18 @@
 <VirtualHost \*:80>
   ServerAdmin webmaster@localhost
  
-  DocumentRoot /var/www/ushahidi-dev
+  DocumentRoot /var/www/ushahidi
  
-  <Directory /var/www/ushahidi-dev>
+  <Directory /var/www/ushahidi>
     Options FollowSymLinks MultiViews
     AllowOverride All
     Order allow,deny
     Allow from all
   </Directory>
  
-  ErrorLog /var/log/apache2/error-ushahidi-dev.log
+  ErrorLog /var/log/apache2/error-ushahidi.log
   LogLevel warn
  
-  CustomLog /var/log/apache2/access-ushahidi-dev.log combined
+  CustomLog /var/log/apache2/access-ushahidi.log combined
  
 </VirtualHost>

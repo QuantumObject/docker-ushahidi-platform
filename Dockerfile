@@ -63,7 +63,6 @@ VOLUME /var/backups
 RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/platform\/httpdocs/' /etc/apache2/sites-available/000-default.conf
 RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini
 COPY database.php /var/www/platform/application/config/environments/development/database.php
-RUN mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 

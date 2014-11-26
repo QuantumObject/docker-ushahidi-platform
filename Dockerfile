@@ -8,7 +8,7 @@ ENV HOME /root
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q php5-mysql \
                                             php-apc \
                                             python-setuptools \

@@ -60,8 +60,8 @@ VOLUME /var/backups
 #add files and script that need to be use for this container
 #include conf file relate to service/daemon 
 #additionsl tools to be use internally
-COPY ushahidi /etc/apache2/sites-available/ushahidi
-#RUN a2ensite ushahidi
+RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/platform\/httpdocs\/' /etc/apache2/sites-available/000-default.conf
+RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 

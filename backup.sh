@@ -3,7 +3,7 @@
 #each container will have their own custum backup scritp for it ... 
 
 #Backup mysql
-mysqldump -u root -p[mysqlpassword] --all-databases > /var/backups/alldb_backup.sql
+mysqldump -u root -pmysqlpsswd --all-databases > /var/backups/alldb_backup.sql
 
 #Backup important file ... of the configuration ...
 cp  /etc/hosts  /var/backups/

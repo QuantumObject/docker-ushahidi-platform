@@ -12,6 +12,9 @@
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git
  git submodule update --init --recursive
+ curl -sS https://getcomposer.org/installer | php
+ mv composer.phar /usr/local/bin/composer
+ /var/www/platform/bin/update
  chown -R www-data:www-data /var/www/platform
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  chmod 770 platform/application/cache

@@ -51,7 +51,7 @@ RUN chmod +x /etc/service/apache2/run
 COPY apache2.conf /etc/apache2/apache2.conf
 RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/platform\/httpdocs/' /etc/apache2/sites-available/000-default.conf
 RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini
-COPY database.php /var/database.php
+COPY database.php /database.php
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld

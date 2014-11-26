@@ -15,7 +15,9 @@
  mv /database.php /var/www/platform/application/config/environments/development/database.php
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
+ cd /var/www/platform/
  /var/www/platform/bin/update
+ cd /var/www/
  chown -R www-data:www-data /var/www/platform
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  chmod 770 platform/application/cache

@@ -22,6 +22,7 @@
  #chmod 770 platform/.htaccess
  rm -R /var/www/html
  a2enmod rewrite
+ a2enmod headers
 
 
 killall mysqld

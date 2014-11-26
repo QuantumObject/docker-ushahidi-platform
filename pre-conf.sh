@@ -12,7 +12,7 @@
  #need to be fix for container enviroment including running database while it is modified it 
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git
- #git submodule update --init --recursive
+ git submodule update --init --recursive
  chown -R www-data:www-data /var/www/platform
  #chmod 770 platform/application/config/config.php
  #chmod 770 platform/application/config

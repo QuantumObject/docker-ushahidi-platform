@@ -20,6 +20,8 @@
  cd /var/www/
  chown -R www-data:www-data /var/www/platform
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
+ cp platform/application/config/init.php platform/application/config/environments/development/
+ sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php
  chmod 770 platform/application/cache
  chmod 770 platform/application/logs
  chmod 770 platform/application/media/uploads

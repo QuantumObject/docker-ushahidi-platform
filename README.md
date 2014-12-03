@@ -12,5 +12,6 @@ To access the container from the server that the container is running :
 
 docker exec -it container_id /bin/bash
 
-http://local_ip:port/ushahidi
+http://local_ip:port/
+
 

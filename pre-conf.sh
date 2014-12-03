@@ -22,10 +22,10 @@
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  cp platform/application/config/init.php platform/application/config/environments/development/
  sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php
- chmod 775 platform/application/cache
- chmod 775 platform/application/logs
- chmod 775 platform/application/media/uploads
- chmod 775 platform/httpdocs/.htaccess
+ chmod 755 platform/application/cache
+ chmod 755 platform/application/logs
+ chmod 755 platform/application/media/uploads
+ chmod 755 platform/httpdocs/.htaccess
  rm -R /var/www/html
  a2enmod rewrite
  a2enmod headers

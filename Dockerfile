@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y -q php5-mysql \
                                             php-apc \
                                             python-setuptools \
                                             curl \
+                                            pwgen \
                                             apache2 \
                                             mysql-server \
                                             mysql-client \

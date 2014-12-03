@@ -9,6 +9,7 @@
 
  echo "GRANT ALL ON ushahidi.* TO ushahidiuser@localhost IDENTIFIED BY 'ushahidipasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
 
+ COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git
  git submodule update --init --recursive
@@ -22,6 +23,8 @@
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  cp platform/application/config/init.php platform/application/config/environments/development/
  sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php
+ # Reset the default cookie salt to something unique
+ sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
  chmod 755 platform/application/cache
  chmod 755 platform/application/logs
  chmod 755 platform/application/media/uploads

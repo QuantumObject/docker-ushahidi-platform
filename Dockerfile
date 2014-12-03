@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y -q php5-mysql \
                                             curl \
                                             apache2 \
                                             mysql-server \
+                                            mysql-client \
                                             xclip \
                                             git-core \
                                             libapache2-mod-auth-mysql \

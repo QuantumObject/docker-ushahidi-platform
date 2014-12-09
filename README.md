@@ -1,8 +1,5 @@
-docker-ushahidi
+docker-ushahidi-platform
 ===============
-
-
-No ready for use ,,, still working on it ...
 
 to run the container ...
 
@@ -14,4 +11,4 @@ docker exec -it container_id /bin/bash
 
 http://local_ip:port/
 
-
+note: this is version 3 and in development at the moment client size of the application is not ready .

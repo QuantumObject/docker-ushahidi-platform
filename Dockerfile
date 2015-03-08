@@ -1,14 +1,11 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.1.0
+#versison of container: 0.1.1
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
-# Set correct environment variables.
-ENV HOME /root
-
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu utopic-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q php5-mysql \
                                             php-apc \
                                             python-setuptools \

@@ -30,6 +30,11 @@
  chmod 755 platform/application/media/uploads
  chmod 755 platform/httpdocs/.htaccess
  rm -R /var/www/html
+ 
+  #to fix error relate to ip address of container apache2
+  echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
+  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
+ 
  a2enmod rewrite
  a2enmod headers
 

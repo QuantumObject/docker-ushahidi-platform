@@ -1,5 +1,5 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.1.1
+#versison of container: 0.2.0
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 

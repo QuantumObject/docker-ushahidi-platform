@@ -4,6 +4,8 @@ Docker container for [Ushahidi Platform][3]
 
 "Make smart decisions with a data management system that rapidly collects data from the crowd and visualizes what happened, when and where."
 
+note: quantumobject/docker-ushahidi container  refer to version 2.7.4 that include client and platform together (old version) , for veriosn 3 you need to deploy the ushhidi-platform (quantumobject/docker-ushahidi-platform container ) and ushhidi-platform-client (quantumobject/docker-ushahidi-platform-client container : still not ready) . 
+
 ## Install dependencies
 
   - [Docker][2]
@@ -30,8 +32,6 @@ After that check with your browser at addresses plus the port assigined by docke
 To access the container from the server that the container is running :
 
     $ docker exec -it container_id /bin/bash
-
-note: this is version 3 and in development at the moment client side of the application is not ready. Please use the container quantumobject/docker-ushahidi.
 
 ## More Info
 

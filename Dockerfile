@@ -1,11 +1,11 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.2.1
-FROM quantumobject/docker-baseimage
+#versison of container: 0.2.2
+FROM quantumobject/docker-baseimage:15.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu utopic-backports main restricted " >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q php5-mysql \
                                             php-apc \
                                             python-setuptools \

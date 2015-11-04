@@ -39,8 +39,11 @@ About Ushahidi Platform: [www.ushahidi.com][1]
 
 To help improve this container [quantumobject/docker-ushahidi-platform][5]
 
+For additional info about us and our projects check our site [www.quantumobject.com][6]
+
 [1]:http://www.ushahidi.com/
 [2]:https://www.docker.com
 [3]:http://www.ushahidi.com/product/ushahidi/
 [4]:http://docs.docker.com
 [5]:https://github.com/QuantumObject/docker-ushahidi-platform
+[6]:http://www.quantumobject.com/

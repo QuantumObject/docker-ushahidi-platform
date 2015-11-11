@@ -19,6 +19,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php5
                                             libapache2-mod-auth-mysql \
                                             php5 \
                                             php5-mcrypt \
+                                            php5-gd\
                                             php5-curl \
                                             php5-memcached \
                     && apt-get clean \

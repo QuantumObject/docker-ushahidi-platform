@@ -1,11 +1,11 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.2.2
+#versison of container: 0.2.3
 FROM quantumobject/docker-baseimage:15.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted " >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php5-mysql \
                                             php-apc \
                                             python-setuptools \
@@ -56,7 +56,7 @@ COPY database.php /database.php
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
 COPY pre-conf.sh /sbin/pre-conf
-RUN chmod +x /sbin/pre-conf \
+RUN chmod +x /sbin/pre-conf; sync \
     && /bin/bash -c /sbin/pre-conf \
     && rm /sbin/pre-conf
 

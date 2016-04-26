@@ -6,8 +6,7 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted " >> /etc/apt/sources.list
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php5-mysql \
-                                            php-apc \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-apc \
                                             python-setuptools \
                                             curl \
                                             pwgen \

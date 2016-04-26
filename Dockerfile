@@ -18,6 +18,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php5
                                             git-core \
                                             libapache2-mod-auth-mysql \
                                             php5 \
+                                            php5-imap \
+                                            php5-json \
+                                            php5-mysqlnd \
                                             php5-mcrypt \
                                             php5-gd\
                                             php5-curl \

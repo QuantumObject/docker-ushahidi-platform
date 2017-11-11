@@ -1,29 +1,28 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.2.3
-FROM quantumobject/docker-baseimage:15.04
+#versison of container: 0.3.1
+FROM quantumobject/docker-baseimage:16.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
-#add repository and update the container
-#Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted " >> /etc/apt/sources.list
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-apc \
+# Update the container
+# Installation of nesesary package/software for this containers...
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-apcu \
                                             python-setuptools \
                                             curl \
                                             pwgen \
                                             apache2 \
-                                            mysql-server \
-                                            mysql-client \
+                                            mariadb-server \
+                                            mariadb-client \
                                             xclip \
                                             git-core \
-                                            libapache2-mod-auth-mysql \
-                                            php5 \
-                                            php5-imap \
-                                            php5-json \
-                                            php5-mysqlnd \
-                                            php5-mcrypt \
-                                            php5-gd\
-                                            php5-curl \
-                                            php5-memcached \
+                                            php7.0 \
+                                            libapache2-mod-php7.0 \
+                                            php7.0-imap \
+                                            php7.0-json \
+                                            php7.0-mysqlnd \
+                                            php7.0-mcrypt \
+                                            php7.0-gd\
+                                            php7.0-curl \
+                                            php7.0-memcached \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -52,7 +51,7 @@ RUN chmod +x /etc/service/apache2/run
 #additionsl tools to be use internally
 COPY apache2.conf /etc/apache2/apache2.conf
 RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/platform\/httpdocs/' /etc/apache2/sites-available/000-default.conf
-RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini
+#RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini   ==> no php-apc present ... uploadprogress for future version of ubuntu
 COPY database.php /database.php
 
 #pre-config scritp for different service that need to be run when container image is create 

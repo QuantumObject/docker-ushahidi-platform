@@ -22,7 +22,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-
                                             php7.0-mcrypt \
                                             php7.0-gd\
                                             php7.0-curl \
-                                            php7.0-memcached \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*

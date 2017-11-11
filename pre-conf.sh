@@ -1,7 +1,7 @@
 #!/bin/bash
 
 /usr/bin/mysqld_safe &
- sleep 10s
+ sleep 3s
 
  mysqladmin -u root password mysqlpsswd
  mysqladmin -u root -pmysqlpsswd reload
@@ -9,12 +9,11 @@
 
  echo "GRANT ALL ON ushahidi.* TO ushahidiuser@localhost IDENTIFIED BY 'ushahidipasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
 
- php5enmod mcrypt
- php5enmod imap
+ phpenmod mcrypt
+ phpenmod imap
  COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git
- git submodule update --init --recursive
  mv /database.php /var/www/platform/application/config/environments/development/database.php
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer

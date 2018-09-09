@@ -47,14 +47,11 @@ RUN mkdir /etc/service/apache2
 COPY apache2.sh /etc/service/apache2/run
 RUN chmod +x /etc/service/apache2/run
 
-
 #add files and script that need to be use for this container
 #include conf file relate to service/daemon 
 #additionsl tools to be use internally
 COPY apache2.conf /etc/apache2/apache2.conf
 RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/platform\/httpdocs/' /etc/apache2/sites-available/000-default.conf
-#RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini   ==> no php-apc present ... uploadprogress for future version of ubuntu
-COPY database.php /database.php
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld

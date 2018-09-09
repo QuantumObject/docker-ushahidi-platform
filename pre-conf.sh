@@ -35,6 +35,7 @@ DB_TYPE=MySQLi
  cd /var/www/
  chown -R www-data:www-data /var/www/platform
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
+ mkdir -p platform/application/config/environments/development
  cp platform/application/config/init.php platform/application/config/environments/development/
  sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php
  # Reset the default cookie salt to something unique

@@ -1,5 +1,5 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.3.1
+#versison of container: 0.3.2
 FROM quantumobject/docker-baseimage:16.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
@@ -14,17 +14,17 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-
                                             mariadb-client \
                                             xclip \
                                             git-core \
-                                            php7.0 \
-                                            libapache2-mod-php7.0 \
-                                            php7.0-imap \
-                                            php7.0-json \
-                                            php7.0-mysqlnd \
-                                            php7.0-mcrypt \
-                                            php7.0-gd\
-                                            php7.0-curl \
-                                            php7.0-mbstring \
+                                            php \
+                                            libapache2-mod-php \
+                                            php-imap \
+                                            php-json \
+                                            php-mysqlnd \
+                                            php-mcrypt \
+                                            php-gd\
+                                            php-curl \
+                                            php-mbstring \
                                             php-memcached \
-                                            php7.0-zip php7.0-xml \
+                                            php-zip php-xml \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*

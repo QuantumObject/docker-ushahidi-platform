@@ -17,9 +17,10 @@ mysql_install_db
  COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git
- mv /database.php /var/www/platform/application/config/environments/development/database.php
+ 
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
+ 
  cd /var/www/platform/
  
  echo "
@@ -28,7 +29,7 @@ DB_NAME=ushahidi
 DB_USER=ushahidiuser
 DB_PASS=ushahidipasswd
 DB_TYPE=MySQLi
- " > /var/platform/.env
+ " > /var/www/platform/.env
  
  /var/www/platform/bin/update
  cd /var/www/
@@ -38,10 +39,10 @@ DB_TYPE=MySQLi
  sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php
  # Reset the default cookie salt to something unique
  sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
- chmod 755 platform/application/cache
- chmod 755 platform/application/logs
- chmod 755 platform/application/media/uploads
+ 
+ chown -R www-data:www-data platform/application/{logs,cache,media/uploads}
  chmod 755 platform/httpdocs/.htaccess
+
  rm -R /var/www/html
  
   #to fix error relate to ip address of container apache2

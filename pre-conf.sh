@@ -21,6 +21,15 @@ mysql_install_db
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
  cd /var/www/platform/
+ 
+ echo "
+DB_HOST=localhost
+DB_NAME=ushahidi
+DB_USER=ushahidiuser
+DB_PASS=ushahidipasswd
+DB_TYPE=MySQLi
+ " > /var/platform/.env
+ 
  /var/www/platform/bin/update
  cd /var/www/
  chown -R www-data:www-data /var/www/platform

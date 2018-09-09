@@ -7,7 +7,7 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 # Installation of nesesary package/software for this containers...
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-apcu \
                                             python-setuptools \
-                                            curl \
+                                            curl unzip \
                                             pwgen \
                                             apache2 \
                                             mariadb-server \

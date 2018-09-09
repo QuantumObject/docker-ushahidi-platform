@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Initial conf for mysql
+mysql_install_db
+#for configuriing database
 /usr/bin/mysqld_safe &
  sleep 3s
 
@@ -41,4 +44,4 @@
 
 
 killall mysqld
-sleep 10s
+sleep 3s

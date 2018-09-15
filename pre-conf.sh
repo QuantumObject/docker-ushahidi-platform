@@ -14,6 +14,7 @@ mysql_install_db
 
  phpenmod mcrypt
  phpenmod imap
+ phpenmod mysqli 
  COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git

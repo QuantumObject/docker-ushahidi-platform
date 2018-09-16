@@ -1,5 +1,5 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.3.1
+#versison of container: 0.3.2
 FROM quantumobject/docker-baseimage:16.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
@@ -7,24 +7,24 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 # Installation of nesesary package/software for this containers...
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-apcu \
                                             python-setuptools \
-                                            curl \
+                                            curl unzip \
                                             pwgen \
                                             apache2 \
                                             mariadb-server \
                                             mariadb-client \
                                             xclip \
                                             git-core \
-                                            php7.0 \
-                                            libapache2-mod-php7.0 \
-                                            php7.0-imap \
-                                            php7.0-json \
-                                            php7.0-mysqlnd \
-                                            php7.0-mcrypt \
-                                            php7.0-gd\
-                                            php7.0-curl \
-                                            php7.0-mbstring \
+                                            php \
+                                            libapache2-mod-php \
+                                            php-imap \
+                                            php-json \
+                                            php-mysqlnd \
+                                            php-mcrypt \
+                                            php-gd\
+                                            php-curl \
+                                            php-mbstring \
                                             php-memcached \
-                                            php7.0-zip php7.0-xml \
+                                            php-zip php-xml \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -47,14 +47,11 @@ RUN mkdir /etc/service/apache2
 COPY apache2.sh /etc/service/apache2/run
 RUN chmod +x /etc/service/apache2/run
 
-
 #add files and script that need to be use for this container
 #include conf file relate to service/daemon 
 #additionsl tools to be use internally
 COPY apache2.conf /etc/apache2/apache2.conf
 RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/platform\/httpdocs/' /etc/apache2/sites-available/000-default.conf
-#RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini   ==> no php-apc present ... uploadprogress for future version of ubuntu
-COPY database.php /database.php
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld

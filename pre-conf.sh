@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Initial conf for mysql
+mysql_install_db
+#for configuriing database
 /usr/bin/mysqld_safe &
  sleep 3s
 
@@ -11,13 +14,28 @@
 
  phpenmod mcrypt
  phpenmod imap
+ phpenmod mysqli 
+ 
  COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
- git clone https://github.com/ushahidi/platform.git
- mv /database.php /var/www/platform/application/config/environments/development/database.php
+ wget https://github.com/ushahidi/platform/archive/v3.12.3.tar.gz
+ tar -xvf v3.12.3.tar.gz
+ rm v3.12.3.tar.gz
+ mv platform-3.12.3 platform 
+ 
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
+ 
  cd /var/www/platform/
+ 
+ echo "
+DB_HOST=localhost
+DB_NAME=ushahidi
+DB_USER=ushahidiuser
+DB_PASS=ushahidipasswd
+DB_TYPE=MySQLi
+ " > /var/www/platform/.env
+ 
  /var/www/platform/bin/update
  cd /var/www/
  chown -R www-data:www-data /var/www/platform
@@ -41,4 +59,4 @@
 
 
 killall mysqld
-sleep 10s
+sleep 3s

@@ -18,11 +18,8 @@ mysql_install_db
  
  COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
- wget https://github.com/ushahidi/platform/archive/v3.12.3.tar.gz
- tar -xvf v3.12.3.tar.gz
- rm v3.12.3.tar.gz
- mv platform-3.12.3 platform 
- 
+ git clone https://github.com/ushahidi/platform.git
+
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
  
@@ -45,13 +42,11 @@ DB_TYPE=MySQLi
  # Reset the default cookie salt to something unique
  sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
 
- 
- chmod 755 platform/application/cache
- chmod 755 platform/application/logs
- chmod 755 platform/application/media/uploads
+ chown -R www-data:www-data platform/application/{logs,cache,media/uploads}
+ chmod 755 platform/application/{logs,cache,media/uploads}
  chmod 755 platform/httpdocs/.htaccess
 
-rm -R /var/www/html
+ rm -R /var/www/html
  
   #to fix error relate to ip address of container apache2
   echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf

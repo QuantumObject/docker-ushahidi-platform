@@ -24,6 +24,7 @@ mysql_install_db
  mv composer.phar /usr/local/bin/composer
  
  cd /var/www/platform/
+ git checkout develop
  
  echo "
 DB_HOST=localhost

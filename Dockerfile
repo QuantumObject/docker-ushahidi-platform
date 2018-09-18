@@ -64,7 +64,7 @@ RUN chmod +x /sbin/pre-conf; sync \
 ## for example to create backup for database with convitation of VOLUME   dockers-bash container_ID backup_mysql
 COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
-VOLUME /var/backups
+VOLUME /var/backups /var/lib/mysql
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 

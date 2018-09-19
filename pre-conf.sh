@@ -34,6 +34,8 @@ DB_PASS=ushahidipasswd
 DB_TYPE=MySQLi
  " > /var/www/platform/.env
  
+ source .env
+ 
  composer install
  composer migrate
  #/var/www/platform/bin/update

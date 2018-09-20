@@ -27,20 +27,24 @@ mysql_install_db
  git checkout develop
  
  echo "
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=SomeRandomKey!!!SomeRandomKey!!!
+APP_TIMEZONE=ET
+DB_CONNECTION=mysql
 DB_HOST=localhost
-DB_NAME=ushahidi
-DB_USER=ushahidiuser
-DB_PASS=ushahidipasswd
-DB_TYPE=MySQLi
+DB_PORT=3306
+DB_DATABASE=ushahidi
+DB_USERNAME=ushahidiuser
+DB_PASSWORD=ushahidipasswd
+MAINTENANCE_MODE=0
  " > /var/www/platform/.env
- 
- source .env
- 
+  
  composer install
  composer migrate
  #/var/www/platform/bin/update
  cd /var/www/
-
+ mkdir -p platform/application/config/environments/development/
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  cp platform/application/config/init.php platform/application/config/environments/development/
  sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php

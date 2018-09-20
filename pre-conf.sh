@@ -18,36 +18,43 @@ mysql_install_db
  
  COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
- wget https://github.com/ushahidi/platform/archive/v3.12.3.tar.gz
- tar -xvf v3.12.3.tar.gz
- rm v3.12.3.tar.gz
- mv platform-3.12.3 platform 
- 
+ git clone https://github.com/ushahidi/platform.git
+
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
  
  cd /var/www/platform/
+ git checkout develop
  
  echo "
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=SomeRandomKey!!!SomeRandomKey!!!
+APP_TIMEZONE=UTC
+DB_CONNECTION=mysql
 DB_HOST=localhost
-DB_NAME=ushahidi
-DB_USER=ushahidiuser
-DB_PASS=ushahidipasswd
-DB_TYPE=MySQLi
+DB_PORT=3306
+DB_DATABASE=ushahidi
+DB_USERNAME=ushahidiuser
+DB_PASSWORD=ushahidipasswd
+MAINTENANCE_MODE=0
  " > /var/www/platform/.env
- 
- /var/www/platform/bin/update
+  
+ composer install
+ composer migrate
+ #/var/www/platform/bin/update
  cd /var/www/
- chown -R www-data:www-data /var/www/platform
+ mkdir -p platform/application/config/environments/development/
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  cp platform/application/config/init.php platform/application/config/environments/development/
  sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php
  # Reset the default cookie salt to something unique
  sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
- chmod 755 platform/application/cache
- chmod 755 platform/application/logs
- chmod 755 platform/application/media/uploads
+
+ chown -R www-data:www-data platform/application/{logs,cache,media/uploads}
+ chmod 755 platform/application/{logs,cache,media/uploads}
  chmod 755 platform/httpdocs/.htaccess
+
  rm -R /var/www/html
  
   #to fix error relate to ip address of container apache2

@@ -30,7 +30,7 @@ mysql_install_db
 APP_ENV=local
 APP_DEBUG=true
 APP_KEY=SomeRandomKey!!!SomeRandomKey!!!
-APP_TIMEZONE=ET
+APP_TIMEZONE=UTC
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306

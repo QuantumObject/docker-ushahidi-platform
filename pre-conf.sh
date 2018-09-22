@@ -42,16 +42,16 @@ MAINTENANCE_MODE=0
   
  composer install
  composer migrate
- #/var/www/platform/bin/update
+ 
  cd /var/www/
- mkdir -p platform/application/config/environments/development/
+ mkdir -p platform/application/{logs,cache,media/uploads}
+ chown -R www-data:www-data platform/application/{logs,cache,media/uploads}
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
- cp platform/application/config/init.php platform/application/config/environments/development/
- sed  -i "s/'index_file'  => FALSE,/'index_file'  => 'index.php',/" platform/application/config/environments/development/init.php
+
  # Reset the default cookie salt to something unique
  sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
 
- chown -R www-data:www-data platform/application/{logs,cache,media/uploads}
+
  chmod 755 platform/application/{logs,cache,media/uploads}
  chmod 755 platform/httpdocs/.htaccess
 

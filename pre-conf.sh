@@ -16,7 +16,7 @@ mysql_install_db
  phpenmod imap
  phpenmod mysqli 
  
- COOKIE_SALT=`pwgen -c -n -1 32`
+ #COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git
 
@@ -44,15 +44,13 @@ MAINTENANCE_MODE=0
  composer migrate
  
  cd /var/www/
- mkdir -p platform/application/{logs,cache,media/uploads}
- chown -R www-data:www-data platform/application/{logs,cache,media/uploads}
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
 
  # Reset the default cookie salt to something unique
- sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
+ # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
 
-
- chmod 755 platform/application/{logs,cache,media/uploads}
+ chown -R www-data:www-data platform/storage/{logs,framework/cache,app}
+ chmod 755 platform/storage/{logs,framework/cache,app}
  chmod 755 platform/httpdocs/.htaccess
 
  rm -R /var/www/html

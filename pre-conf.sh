@@ -37,6 +37,7 @@ DB_PORT=3306
 DB_DATABASE=ushahidi
 DB_USERNAME=ushahidiuser
 DB_PASSWORD=ushahidipasswd
+CACHE_DRIVER=file
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
   

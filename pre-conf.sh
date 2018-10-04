@@ -51,8 +51,8 @@ MAINTENANCE_MODE=0
  # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
 
  chown -R www-data:www-data platform/storage/{logs,framework/cache,app}
- chmod 755 platform/storage/{logs,framework/cache,app}
- chmod 755 platform/httpdocs/.htaccess
+ chmod 775 platform/storage/{logs,framework/cache,app}
+ chmod 775 platform/httpdocs/.htaccess
 
  rm -R /var/www/html
  

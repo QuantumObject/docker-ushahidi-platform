@@ -1,6 +1,6 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.3.2
-FROM quantumobject/docker-baseimage:16.04
+#versison of container: 0.3.3
+FROM quantumobject/docker-baseimage:18.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 # Update the container
@@ -19,7 +19,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-
                                             php-imap \
                                             php-json \
                                             php-mysqlnd \
-                                            php-mcrypt \
                                             php-gd\
                                             php-curl \
                                             php-mbstring \

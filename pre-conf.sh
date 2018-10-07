@@ -12,7 +12,7 @@ mysql_install_db
 
  echo "GRANT ALL ON ushahidi.* TO ushahidiuser@localhost IDENTIFIED BY 'ushahidipasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
 
- phpenmod mcrypt
+
  phpenmod imap
  phpenmod mysqli 
  

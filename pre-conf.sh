@@ -56,7 +56,7 @@ MAINTENANCE_MODE=0
  cp docker/common.sh /common.sh
  cp docker/run.run.sh /run.run.sh
  
- composer migrate
+ . /run.run.sh
  
  rm -R /var/www/html
  

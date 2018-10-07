@@ -49,11 +49,11 @@ MAINTENANCE_MODE=0
 
  # Reset the default cookie salt to something unique
  # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
-
- chown -R www-data:www-data platform/storage/{logs,framework/cache,app}
- chmod 775 platform/storage/{logs,framework/cache,app}
- chmod 775 platform/httpdocs/.htaccess
-
+ 
+ chgrp -R 0 . && chmod -R g+rwX . 
+	usermod -g 0 www-data 
+	chmod 777 storage
+ 
  rm -R /var/www/html
  
   #to fix error relate to ip address of container apache2

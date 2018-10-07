@@ -41,8 +41,7 @@ CACHE_DRIVER=file
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
   
- composer install
- composer migrate
+ composer --no-autoloader --no-scripts
  
  cd /var/www/
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
@@ -53,6 +52,11 @@ MAINTENANCE_MODE=0
  chgrp -R 0 . && chmod -R g+rwX . 
 	usermod -g 0 www-data 
 	chmod 777 storage
+ cp docker/run.tasks.conf /etc/chaperone.d/
+ cp docker/common.sh /common.sh
+ cp docker/run.run.sh /run.run.sh
+ 
+ composer migrate
  
  rm -R /var/www/html
  

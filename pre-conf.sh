@@ -53,15 +53,14 @@ MAINTENANCE_MODE=0
 	usermod -g 0 www-data 
 	chmod 777 /var/www/platform/storage
 	
-crontab -u www-data -l > file
+
 echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan datasource:outgoing >> /dev/null
 */5 * * * * cd /var/www/platform && ./artisan datasource:incoming >> /dev/null
 */5 * * * * cd /var/www/platform && ./artisan savedsearch:sync >> /dev/null
 */5 * * * * cd /var/www/platform && ./artisan notification:queue >> /dev/null
 */5 * * * * cd /var/www/platform && ./artisan webhook:send >> /dev/null
-" >> file
-crontab -u www-data file
+" | crontab -u www-data -
  
  cp platform/docker/common.sh /common.sh
  cp platform/docker/run.run.sh /run.run.sh

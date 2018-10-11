@@ -45,13 +45,23 @@ MAINTENANCE_MODE=0
  
  cd /var/www/
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
-
+ 
  # Reset the default cookie salt to something unique
  # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
  
  chgrp -R 0 . && chmod -R g+rwX . 
 	usermod -g 0 www-data 
 	chmod 777 storage
+	
+crontab -u www-data -l > file
+echo "#MAILTO=<your email address for system alerts>
+*/5 * * * * cd /var/www/platform && ./artisan datasource:outgoing >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan datasource:incoming >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan savedsearch:sync >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan notification:queue >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan webhook:send >> /dev/null
+" >> file
+crontab -u www-data file
  
  cp platform/docker/common.sh /common.sh
  cp platform/docker/run.run.sh /run.run.sh

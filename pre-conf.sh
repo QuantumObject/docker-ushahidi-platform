@@ -41,19 +41,17 @@ CACHE_DRIVER=file
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
   
- composer --no-autoloader --no-scripts
+ composer --no-scripts
  
- cd /var/www/
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  
  # Reset the default cookie salt to something unique
  # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
  
- chgrp -R 0 . && chmod -R g+rwX . 
-	usermod -g 0 www-data 
-	chmod 777 /var/www/platform/storage
+ chown -R www-data:www-data /var/www/platform
+ chmod -R g+rwX /var/www/platform
+ chmod 777 /var/www/platform/storage
 	
-
 echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan datasource:outgoing >> /dev/null
 */5 * * * * cd /var/www/platform && ./artisan datasource:incoming >> /dev/null

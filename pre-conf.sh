@@ -52,7 +52,7 @@ MAINTENANCE_MODE=0
  chgrp -R 0 . && chmod -R g+rwX . 
 	usermod -g 0 www-data 
 	chmod 777 storage
- cp platform/docker/run.tasks.conf /etc/chaperone.d/
+ 
  cp platform/docker/common.sh /common.sh
  cp platform/docker/run.run.sh /run.run.sh
  

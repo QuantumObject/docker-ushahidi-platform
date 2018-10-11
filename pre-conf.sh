@@ -51,7 +51,7 @@ MAINTENANCE_MODE=0
  
  chgrp -R 0 . && chmod -R g+rwX . 
 	usermod -g 0 www-data 
-	chmod 777 storage
+	chmod 777 /var/www/platform/storage
 	
 crontab -u www-data -l > file
 echo "#MAILTO=<your email address for system alerts>

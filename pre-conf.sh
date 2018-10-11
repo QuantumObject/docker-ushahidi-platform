@@ -60,8 +60,8 @@ echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan webhook:send >> /dev/null
 " | crontab -u www-data -
  
- cp platform/docker/common.sh /common.sh
- cp platform/docker/run.run.sh /run.run.sh
+ cp /var/www/platform/docker/common.sh /common.sh
+ cp /var/www/platform/docker/run.run.sh /run.run.sh
  
  . /run.run.sh
  

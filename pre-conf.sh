@@ -12,11 +12,11 @@ mysql_install_db
 
  echo "GRANT ALL ON ushahidi.* TO ushahidiuser@localhost IDENTIFIED BY 'ushahidipasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
 
- phpenmod mcrypt
+
  phpenmod imap
  phpenmod mysqli 
  
- COOKIE_SALT=`pwgen -c -n -1 32`
+ #COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  git clone https://github.com/ushahidi/platform.git
 
@@ -37,24 +37,34 @@ DB_PORT=3306
 DB_DATABASE=ushahidi
 DB_USERNAME=ushahidiuser
 DB_PASSWORD=ushahidipasswd
+CACHE_DRIVER=file
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
   
- composer install
- composer migrate
+ composer --no-scripts
  
- cd /var/www/
- mkdir -p platform/application/{logs,cache,media/uploads}
- chown -R www-data:www-data platform/application/{logs,cache,media/uploads}
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
-
+ 
  # Reset the default cookie salt to something unique
- sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
-
-
- chmod 755 platform/application/{logs,cache,media/uploads}
- chmod 755 platform/httpdocs/.htaccess
-
+ # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
+ 
+ chown -R www-data:www-data /var/www/platform
+ chmod -R g+rwX /var/www/platform
+ chmod 777 /var/www/platform/storage
+	
+echo "#MAILTO=<your email address for system alerts>
+*/5 * * * * cd /var/www/platform && ./artisan datasource:outgoing >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan datasource:incoming >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan savedsearch:sync >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan notification:queue >> /dev/null
+*/5 * * * * cd /var/www/platform && ./artisan webhook:send >> /dev/null
+" | crontab -u www-data -
+ 
+ cp /var/www/platform/docker/common.sh /common.sh
+ cp /var/www/platform/docker/run.run.sh /run.run.sh
+ 
+ . /run.run.sh
+ 
  rm -R /var/www/html
  
   #to fix error relate to ip address of container apache2

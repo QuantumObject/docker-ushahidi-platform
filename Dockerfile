@@ -1,7 +1,13 @@
 #name of container: docker-ushahidi-platform
-#versison of container: 0.3.2
+#versison of container: 0.3.3
 FROM quantumobject/docker-baseimage:16.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
+
+ENV ENABLE_PLATFORM_TASKS=true \
+    RUN_PLATFORM_MIGRATIONS=true \
+    VHOST_ROOT=/var/www/httpdocs \
+    VHOST_INDEX=index.php \
+    PHP_EXEC_TIME_LIMIT=3600
 
 # Update the container
 # Installation of nesesary package/software for this containers...
@@ -19,7 +25,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive  apt-get install -y -q php-
                                             php-imap \
                                             php-json \
                                             php-mysqlnd \
-                                            php-mcrypt \
                                             php-gd\
                                             php-curl \
                                             php-mbstring \

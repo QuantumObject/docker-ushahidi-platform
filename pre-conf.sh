@@ -50,7 +50,7 @@ MAINTENANCE_MODE=0
  
  chown -R www-data:www-data /var/www/platform
  chmod -R g+rwX /var/www/platform
- chmod 777 /var/www/platform/storage
+ chmod 770 /var/www/platform/storage
 	
 echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan datasource:outgoing >> /dev/null

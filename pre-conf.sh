@@ -41,7 +41,7 @@ CACHE_DRIVER=file
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
   
- composer --no-scripts
+ composer
  
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  
@@ -50,7 +50,7 @@ MAINTENANCE_MODE=0
  
  chown -R www-data:www-data /var/www/platform
  chmod -R g+rwX /var/www/platform
- chmod 770 /var/www/platform/storage
+ chmod -R 770 /var/www/platform/storage
 	
 echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan datasource:outgoing >> /dev/null

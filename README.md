@@ -10,10 +10,10 @@ note: You need to deploy the ushhidi-platform (quantumobject/docker-ushahidi-pla
 
   - [Docker][2]
 
-To install docker in Ubuntu 16.04 use the commands:
+To install docker in Ubuntu 18.04 use the commands:
 
     $ sudo apt-get update
-    $ sudo wget -qO- https://get.docker.com/ | sh
+    $ sudo bash < <(curl -sL https://get.docker.com/)
 
  To install docker in other operating systems check [docker online documentation][4]
 
@@ -21,7 +21,9 @@ To install docker in Ubuntu 16.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d -p 80 quantumobject/docker-ushahidi-platform
+    $ docker run -d -p 80 --add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip quantumobject/docker-ushahidi-platform
+    
+ note: needed     "--add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip" to modified /etc/hosts inside of container.
 
 ## Accessing the Ushahidi Platform applications:
 

@@ -74,6 +74,6 @@ echo "#MAILTO=<your email address for system alerts>
  a2enmod rewrite
  a2enmod headers
 
+(! pidof mysqld) || sudo kill -9 $(pidof mysqld)
 
-killall -q mysqld
 sleep 3s

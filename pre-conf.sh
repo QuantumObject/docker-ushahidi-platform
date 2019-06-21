@@ -75,5 +75,5 @@ echo "#MAILTO=<your email address for system alerts>
  a2enmod headers
 
 
-killall mysqld
+killall -q mysqld
 sleep 3s

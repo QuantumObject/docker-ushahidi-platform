@@ -38,6 +38,7 @@ DB_DATABASE=ushahidi
 DB_USERNAME=ushahidiuser
 DB_PASSWORD=ushahidipasswd
 CACHE_DRIVER=file
+QUEUE_DRIVER=sync
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
  

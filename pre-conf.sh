@@ -40,6 +40,9 @@ DB_PASSWORD=ushahidipasswd
 CACHE_DRIVER=file
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
+ 
+ #fix update of self composer permision. 
+ chown -R www-data:www-data /var/www
   
  composer
  
@@ -48,7 +51,7 @@ MAINTENANCE_MODE=0
  # Reset the default cookie salt to something unique
  # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
  
- chown -R www-data:www-data /var/www/platform
+ chown -R www-data:www-data /var/www
  chmod -R g+rwX /var/www/platform
  chmod -R 770 /var/www/platform/storage
 	

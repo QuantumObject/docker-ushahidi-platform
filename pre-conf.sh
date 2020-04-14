@@ -23,6 +23,7 @@ mysql_install_db
  # git clone https://github.com/ushahidi/platform.git
  wget https://github.com/ushahidi/platform/archive/v4.4.1.zip
  unzip v4.4.1.zip -d /var/www/platform
+ rm v4.4.1.zip
  # curl -sS https://getcomposer.org/installer | php
  #mv composer.phar /usr/local/bin/composer
  

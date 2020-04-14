@@ -24,8 +24,8 @@ mysql_install_db
  wget https://github.com/ushahidi/platform/archive/v4.4.1.zip
  unzip v4.4.1.zip -d /var/www/platform
  rm v4.4.1.zip
- # curl -sS https://getcomposer.org/installer | php
- #mv composer.phar /usr/local/bin/composer
+ curl -sS https://getcomposer.org/installer | php
+ mv composer.phar /usr/local/bin/composer
  
  cd /var/www/platform/
  # git checkout develop
@@ -47,9 +47,8 @@ MAINTENANCE_MODE=0
  " > /var/www/platform/.env
  
  #fix update of self composer permision. 
- #chown -R www-data:www-data /var/www
-  
- # composer
+ chown -R www-data:www-data /var/www
+ composer
  
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
  

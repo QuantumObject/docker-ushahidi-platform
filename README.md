@@ -21,7 +21,7 @@ To install docker in Ubuntu 18.04 use the commands:
 
 To run container use the command below:
 
-    docker run -d -p 8080:80 --add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip quantumobject/docker-ushahidi-platform
+    docker run -d -p 8080:80 --add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip --name ushahidi-platform quantumobject/docker-ushahidi-platform
     
  note: needed     "--add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip" to modified /etc/hosts inside of container.
 

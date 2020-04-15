@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#trying to change from git clone to downloading directly from zip ....
+
 #Initial conf for mysql
 mysql_install_db
 #for configuriing database
@@ -18,13 +20,16 @@ mysql_install_db
  
  #COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
- git clone https://github.com/ushahidi/platform.git
-
+ # git clone https://github.com/ushahidi/platform.git
+ wget https://github.com/ushahidi/platform/archive/v4.4.1.zip
+ unzip v4.4.1.zip -d /var/www
+ mv /var/www/platform* /var/www/platform
+ rm v4.4.1.zip
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
  
  cd /var/www/platform/
- git checkout develop
+ # git checkout develop
  
  echo "
 APP_ENV=local
@@ -44,7 +49,6 @@ MAINTENANCE_MODE=0
  
  #fix update of self composer permision. 
  chown -R www-data:www-data /var/www
-  
  composer
  
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess

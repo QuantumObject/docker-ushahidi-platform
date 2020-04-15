@@ -12,8 +12,8 @@ note: You need to deploy the ushhidi-platform (quantumobject/docker-ushahidi-pla
 
 To install docker in Ubuntu 18.04 use the commands:
 
-    $ sudo apt-get update
-    $ sudo bash < <(curl -sL https://get.docker.com/)
+    sudo apt-get update
+    sudo bash < <(curl -sL https://get.docker.com/)
 
  To install docker in other operating systems check [docker online documentation][4]
 
@@ -21,7 +21,7 @@ To install docker in Ubuntu 18.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d -p 80 --add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip quantumobject/docker-ushahidi-platform
+    docker run -d -p 8080:80 --add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip --name ushahidi-platform quantumobject/docker-ushahidi-platform
     
  note: needed     "--add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip" to modified /etc/hosts inside of container.
 
@@ -33,7 +33,7 @@ After that check with your browser at addresses plus the port assigined by docke
 
 To access the container from the server that the container is running :
 
-    $ docker exec -it container_id /bin/bash
+    docker exec -it container_id /bin/bash
     
 note: deploy this container behind proxy with SSL :
 

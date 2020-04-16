@@ -2,6 +2,10 @@
 
 #trying to change from git clone to downloading directly from zip ....
 
+function generate_app_key {
+    php -r "echo md5(uniqid()).\"\n\";"
+}
+
 #Initial conf for mysql
 mysql_install_db
 #for configuriing database
@@ -18,7 +22,6 @@ mysql_install_db
  phpenmod imap
  phpenmod mysqli 
  
- COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  # git clone https://github.com/ushahidi/platform.git
  wget https://github.com/ushahidi/platform/releases/download/v4.4.1/ushahidi-platform-bundle-v4.4.1.tar.gz
@@ -44,6 +47,9 @@ CACHE_DRIVER=file
 QUEUE_DRIVER=sync
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
+ 
+ APP_KEY=$(generate_app_key)
+ sed  -i "s|APP_KEY=.*|APP_KEY=${APP_KEY}|" /var/www/platform/.env
  
  php artisan migrate
  

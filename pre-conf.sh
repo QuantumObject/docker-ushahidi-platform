@@ -52,6 +52,7 @@ QUEUE_DRIVER=sync
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
  
+ #need to be move to starup.sh to make sure each container have there own APP_KEY
  APP_KEY=$(generate_app_key)
  sed  -i "s|APP_KEY=.*|APP_KEY=${APP_KEY}|" /var/www/platform/.env
  

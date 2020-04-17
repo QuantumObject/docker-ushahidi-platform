@@ -28,6 +28,10 @@ mysql_install_db
  ver=$(tar -tf ushahidi-platform-bundle-v4.4.1.tar.gz | head -n1 | tr -d /)
  tar -xvf ushahidi-platform-bundle-v4.4.1.tar.gz && mv $ver /var/www/platform
  rm ushahidi-platform-bundle-v4.4.1.tar.gz
+ 
+ #composer installation 
+ curl -sS https://getcomposer.org/installer | php
+ mv composer.phar /usr/local/bin/composer
 
  cd /var/www/platform/
  # git checkout develop
@@ -51,11 +55,12 @@ MAINTENANCE_MODE=0
  APP_KEY=$(generate_app_key)
  sed  -i "s|APP_KEY=.*|APP_KEY=${APP_KEY}|" /var/www/platform/.env
  
- php artisan migrate
+ # php artisan migrate
  
  #fix update of self composer permision. 
- chown -R www-data:www-data /var/www/platform/storage/{logs,app,framework}
- php artisan passport:keys
+ chown -R www-data:www-data /var/www/platform/storage/{logs,framework}
+ 
+ #php artisan passport:keys
  
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
   
@@ -70,7 +75,12 @@ echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan notification:queue >> /dev/null
 */5 * * * * cd /var/www/platform && ./artisan webhook:send >> /dev/null
 " | crontab -u www-data -
-  
+ 
+ #run some configuraion files before execution
+ cp /var/www/platform/docker/common.sh /common.sh
+ cp /var/www/platform/docker/run.run.sh /run.run.sh
+ . /run.run.sh
+ 
  rm -R /var/www/html
  
  #to fix error relate to ip address of container apache2

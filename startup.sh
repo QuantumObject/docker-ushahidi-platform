@@ -37,6 +37,9 @@ else
         
         (! pidof mysqld) || kill -9 $(pidof mysqld)
         
+        #public key
+        cat /var/www/platform/storage/passport/oauth-public.key
+        
         #needed for fix problem with ubuntu and cron
         update-locale 
         date > /etc/configured

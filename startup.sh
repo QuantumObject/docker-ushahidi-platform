@@ -38,6 +38,7 @@ else
         (! pidof mysqld) || kill -9 $(pidof mysqld)
         
         #public key
+        echo " APP_KEY : "
         echo $APP_KEY
         cat /var/www/platform/storage/passport/oauth-public.key
         

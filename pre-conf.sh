@@ -18,22 +18,23 @@ mysql_install_db
  phpenmod imap
  phpenmod mysqli 
  
- #COOKIE_SALT=`pwgen -c -n -1 32`
  cd /var/www/
  # git clone https://github.com/ushahidi/platform.git
- wget https://github.com/ushahidi/platform/archive/v4.4.1.zip
- unzip v4.4.1.zip -d /var/www
- mv /var/www/platform* /var/www/platform
- rm v4.4.1.zip
+ wget https://github.com/ushahidi/platform/releases/download/v4.4.1/ushahidi-platform-bundle-v4.4.1.tar.gz
+ ver=$(tar -tf ushahidi-platform-bundle-v4.4.1.tar.gz | head -n1 | tr -d /)
+ tar -xvf ushahidi-platform-bundle-v4.4.1.tar.gz && mv $ver /var/www/platform
+ rm ushahidi-platform-bundle-v4.4.1.tar.gz
+ 
+ #composer installation 
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer
- 
+
  cd /var/www/platform/
  # git checkout develop
  
  echo "
 APP_ENV=local
-APP_DEBUG=true
+APP_DEBUG=false
 APP_KEY=SomeRandomKey!!!SomeRandomKey!!!
 APP_TIMEZONE=UTC
 DB_CONNECTION=mysql
@@ -48,14 +49,9 @@ MAINTENANCE_MODE=0
  " > /var/www/platform/.env
  
  #fix update of self composer permision. 
- chown -R www-data:www-data /var/www
- composer
- 
+ chown -R www-data:www-data /var/www/platform/storage/{logs,framework}
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
- 
- # Reset the default cookie salt to something unique
- # sed -i -e "s/Cookie::\$salt = '.*';/Cookie::\$salt = '$COOKIE_SALT';/" platform/application/bootstrap.php 
- 
+  
  chown -R www-data:www-data /var/www
  chmod -R g+rwX /var/www/platform
  chmod -R 770 /var/www/platform/storage
@@ -68,16 +64,11 @@ echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan webhook:send >> /dev/null
 " | crontab -u www-data -
  
- cp /var/www/platform/docker/common.sh /common.sh
- cp /var/www/platform/docker/run.run.sh /run.run.sh
- 
- . /run.run.sh
- 
  rm -R /var/www/html
  
-  #to fix error relate to ip address of container apache2
-  echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
-  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
+ #to fix error relate to ip address of container apache2
+ echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
+ ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
  
  a2enmod rewrite
  a2enmod headers

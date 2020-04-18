@@ -19,8 +19,6 @@ To install docker in Ubuntu 18.04 use the commands:
 
 ## Usage
 
-Before you be able to use this container you need first to deploy quantumoject/docker-ushahidi-platform and use the http://ip:port reference of it to _-e PLATFORM="http://ip:port"_ for entry for this container. 
-
 To run container use the commands below:
 
     docker run -d -p 8080:80 --add-host platform-api:external_ip --add-host api.ushahidi.test:external_ip --name ushahidi-platform quantumobject/docker-ushahidi-platform

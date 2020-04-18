@@ -2,10 +2,6 @@
 
 #trying to change from git clone to downloading directly from zip ....
 
-function generate_app_key {
-    php -r "echo md5(uniqid()).\"\n\";"
-}
-
 #Initial conf for mysql
 mysql_install_db
 #for configuriing database
@@ -52,17 +48,8 @@ QUEUE_DRIVER=sync
 MAINTENANCE_MODE=0
  " > /var/www/platform/.env
  
- #need to be move to starup.sh to make sure each container have there own APP_KEY
- APP_KEY=$(generate_app_key)
- sed  -i "s|APP_KEY=.*|APP_KEY=${APP_KEY}|" /var/www/platform/.env
- 
- # php artisan migrate
- 
  #fix update of self composer permision. 
  chown -R www-data:www-data /var/www/platform/storage/{logs,framework}
- 
- #php artisan passport:keys
- 
  mv /var/www/platform/httpdocs/template.htaccess /var/www/platform/httpdocs/.htaccess
   
  chown -R www-data:www-data /var/www
@@ -76,11 +63,6 @@ echo "#MAILTO=<your email address for system alerts>
 */5 * * * * cd /var/www/platform && ./artisan notification:queue >> /dev/null
 */5 * * * * cd /var/www/platform && ./artisan webhook:send >> /dev/null
 " | crontab -u www-data -
- 
- #run some configuraion files before execution
- cp /var/www/platform/docker/common.sh /common.sh
- cp /var/www/platform/docker/run.run.sh /run.run.sh
- . /run.run.sh
  
  rm -R /var/www/html
  

@@ -15,7 +15,7 @@ else
        # Returns true once mysql can connect.
         mysql_ready() {
                         mysqladmin ping --host=localhost --user=ushahidiuser --password=ushahidipasswd > /dev/null 2>&1
-                       }ysqlpsswd
+                       }
       
       # waiting for mysql 
       while !(mysql_ready)

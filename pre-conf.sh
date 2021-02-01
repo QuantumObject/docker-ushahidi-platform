@@ -20,10 +20,10 @@ mysql_install_db
  
  cd /var/www/
  # git clone https://github.com/ushahidi/platform.git
- wget https://github.com/ushahidi/platform/releases/download/v4.4.1/ushahidi-platform-bundle-v4.4.1.tar.gz
- ver=$(tar -tf ushahidi-platform-bundle-v4.4.1.tar.gz | head -n1 | tr -d /)
- tar -xvf ushahidi-platform-bundle-v4.4.1.tar.gz && mv $ver /var/www/platform
- rm ushahidi-platform-bundle-v4.4.1.tar.gz
+ wget https://github.com/ushahidi/platform/releases/download/v5.0.15/ushahidi-platform-bundle-v5.0.15.tar.gz
+ ver=$(tar -tf ushahidi-platform-bundle-v5.0.15.tar.gz | head -n1 | tr -d /)
+ tar -xvf ushahidi-platform-bundle-v5.0.15.tar.gz && mv $ver /var/www/platform
+ rm ushahidi-platform-bundle-v5.0.15.tar.gz
  
  #composer installation 
  curl -sS https://getcomposer.org/installer | php
